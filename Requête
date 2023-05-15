@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct{
+  char lettre;
+  int chiffre;
+}Case;
+
+void Poubelle(){
+  char c = '0';
+  while(c != '\n'){
+    scanf("%c", &c);
+  }
+}
+
+Case choix_case(Case c){
+  int l = 0;
+  int h = 0;
+  int i = 0;
+  do{
+    if(i > 0){
+      printf("La case sélectionnée n'existe pas ! \n");
+    }
+    printf("\nSélectionner la case à échanger (avec une lettre comprise entre A et J pour la colonne et un chiffre compris entre 1 et 10 pour la ligne) : ");
+    l = scanf("%c", &c.lettre);
+    h = scanf("%d", &c.chiffre);
+    Poubelle();
+    i++;
+  }while(('A' > c.lettre) || (c.lettre > 'J') || (1 > c.chiffre) || (c.chiffre > 10) || (l != 1) || (h != 1));
+  return c;
+}
+
+
+int main() {
+  int L = 0;
+  int C = 0;
+  int g = 0;
+  do{
+    if(g > 0){
+      printf("Les deux cases sélectionnées ne peuvent pas être échangées ! \n");
+    }
+    Case c1 = choix_case(c1);
+    Case c2 = choix_case(c2);
+    printf("\n");
+    printf("Les cases choisies sont : %c%d et %c%d\n", c1.lettre,c1.chiffre, c2.lettre, c2.chiffre);
+    L = c1.lettre - c2.lettre;
+    C = c1.chiffre - c2.chiffre;
+    g++;
+  }while(((-1 != L) && (L != 0) && (L != 1)) || ((-1 != C) && (C != 0) && (C != 1)));
+  printf("Les deux cases peuvent être échangées !");
+  
+  return 0;
+}
